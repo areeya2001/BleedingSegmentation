@@ -72,7 +72,7 @@ rgbRed1 = uint8(cat(3,redPoints1,redPoints1,redPoints1)).*cluster1;
 %figure;imshow(rgbRed1)
 
 % check red pixel of cluster2
-redPoints2 = cluster2(:,:,1)>=130 & cluster2(:,:,2)<=60 & cluster2(:,:,3)<=100;
+redPoints2 = cluster2(:,:,1)>=131 & cluster2(:,:,2)<=60 & cluster2(:,:,3)<=100;
 percentRed2 = 100*(sum(sum(redPoints2))/(size(cluster2,1)*size(cluster2,2)));
 fprintf('Image has %d red pixels\n',sum(sum(redPoints2)))
 fprintf('Image is %.2f percent red\n',percentRed2)

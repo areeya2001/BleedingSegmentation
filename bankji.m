@@ -4,7 +4,7 @@ imagefiles = dir('.\imagedata\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
-rootPath =  "C:\Users\areey\project\bank";
+rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster";
 rootPathClusterExist = dir(rootPath);
 
 % Read all file
@@ -41,7 +41,7 @@ if isempty(createFolder)
     clusterFolder = dir('.\*');
     countFolderCluster = length(clusterFolder); 
     %  เปลี่ยนบรรทัดที่ 44 เป็น countFolderCluster หากต้องการที่จะเอาทุกโฟล์เดอร์
-    for folderClusterIndex = 3:5
+    for folderClusterIndex = 3:countFolderCluster
         clusterFolderPath = clusterFolder(folderClusterIndex).name;
         intoFolderEachCluster = rootPath+"\"+clusterFolderPath;
         cd(intoFolderEachCluster)

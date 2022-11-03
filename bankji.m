@@ -40,11 +40,32 @@ if isempty(createFolder)
     cd(rootPath)
     clusterFolder = dir('.\*');
     countFolderCluster = length(clusterFolder); 
-
-    for folderClusterIndex = 3:countFolderCluster
+    %  เปลี่ยนบรรทัดที่ 44 เป็น countFolderCluster หากต้องการที่จะเอาทุกโฟล์เดอร์
+    for folderClusterIndex = 3:5
         clusterFolderPath = clusterFolder(folderClusterIndex).name;
         intoFolderEachCluster = rootPath+"\"+clusterFolderPath;
-        disp(intoFolderEachCluster)
+        cd(intoFolderEachCluster)
+
+        clusterInFolder = imageDatastore("./*.jpg");
+        imageInClusterFolder = readall(clusterInFolder);
+        fprintf('Folder %s',intoFolderEachCluster);
+        fprintf('\n')
+        for redPixelCluster = 1:4
+            imgInFolder = readimage(clusterInFolder,redPixelCluster);
+            
+            redPoints = imgInFolder(:,:,1)>=130 & imgInFolder(:,:,2)<=60 & imgInFolder(:,:,3)<=100;
+            percentRed = 100*(sum(sum(redPoints))/(size(imgInFolder,1)*size(imgInFolder,2)));
+
+            if(percentRed >= 0.50)
+                mkdir assumeBleeding
+                copyfile(sprintf('cluster%d.jpg',redPixelCluster),'./assumeBleeding/')
+            end
+            fprintf('Image has %d red pixels\n',sum(sum(redPoints)))
+            fprintf('Image is %.2f percent red\n',percentRed)
+            rgbRed1 = uint8(cat(3,redPoints,redPoints,redPoints)).*imgInFolder;
+        end
+
+        cd("../")
     end
 
 end

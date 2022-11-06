@@ -4,15 +4,12 @@ imagefiles = dir('.\imagedata\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
-rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_1";
+rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster";
 rootPathClusterExist = dir(rootPath);
 
 % Read all file
 prompt = "Do you want create folder? Y/N [Y]: ";
 createFolder = input(prompt,"s");
-
-prompt2 = "Do you want use image red_zone ? Y/N: ";
-useRedZone = input(prompt2,"s");
 if createFolder == "Y"
       for imageData = 1:countFiles
             currentfilename = imagefiles(imageData).name;
@@ -47,23 +44,17 @@ if createFolder == "Y"
                 %figure,imshow(bleeding)
                 clusterName = "cluster"+kmeanIndex;
                 clusterNameStr = sprintf('%s',clusterName);
-                if isempty(useRedZone)
-                    imwrite(cluster,[clusterNameStr '.png']);
-                elseif useRedZone == 'Y'
-                    imwrite(red_zone,[clusterNameStr '.png']);
-                else 
-                   imwrite(cluster,[clusterNameStr '.png']);
-                end 
+
+                prompt = "Do you want use image red_zone ? Y/N";
+                useRedZoe = input(prompt,"s");
+
+                imwrite(red_zone,[clusterNameStr '.png']);
             end
       end
 end
 
-disp('--- Preparing to analysis image bleeding 10s ---')
-pause(10.0);
-
-disp('Ready..')
-
- cd(rootPath)
+if isempty(createFolder)
+    cd(rootPath)
     clusterFolder = dir('.\*');
     countFolderCluster = length(clusterFolder); 
     %  เปลี่ยนบรรทัดที่ 44 เป็น countFolderCluster หากต้องการที่จะเอาทุกโฟล์เดอร์
@@ -98,3 +89,4 @@ disp('Ready..')
        cd("../")
     end
 
+end

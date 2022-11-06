@@ -1,0 +1,42 @@
+A = imread('breeding_4cluster1.jpg');
+B = imread('breeding_4cluster4.jpg');
+K = imadd(A,B);
+figure;imshow(K,[])
+[y,x] = find(K~=255) ; 
+coor = [x  y] ; 
+%% RGB to Lab color speace
+Lab_Image = rgb2lab(K);
+grayImage = rgb2gray(K);
+figure;imshow(grayImage);title("gray image1")
+hp = impixelinfo();
+whos grayImage
+thisIntensity = grayImage(5, 39);
+hp.Position = [x, y, width, height];
+%% separate Lightness
+% Set up where it will show x, y, and value in status line.
+%[val,idx] = find(grayImage);
+
+%% Plot Histogram of image data1
+labimg2 = rgb2lab(K);
+L2 = labimg2(:,:,1);
+a2 = labimg2(:,:,2);
+b2 = labimg2(:,:,3);
+figure;
+subplot(2,2,1);
+LHist = histogram(L2);
+grid on;
+title('L Histogram');
+
+subplot(2,2,2);
+aHist = histogram(a2);
+grid on;
+title('a Histogram');
+
+subplot(2,2,3);
+bHist = histogram(b2);
+grid on;
+title('b Histogram');
+
+subplot(2,2,4);
+imshow(K);
+%% 

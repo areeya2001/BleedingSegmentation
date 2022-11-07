@@ -220,7 +220,7 @@ for imageData = 1:48
 
                     clusterName =  strrep(currentfilename, '.png', '');
                     clusterNameStr = sprintf('%s',clusterName);
-                    imwrite(clusterMerged,[clusterNameStr '.png']);
+                    imwrite(maskedRGBImage,[clusterNameStr '.png']);
 
 %                     figure,imshow(maskedRGBImage)
 %                      title('H S V Color')

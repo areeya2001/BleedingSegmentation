@@ -12,7 +12,7 @@ imagefiles = dir('.\imagedata\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
-rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_1";
+rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_2";
 rootPathClusterExist = dir(rootPath);
 
 % Read all file
@@ -52,6 +52,18 @@ if createFolder == "Y"
         cluster4 = img .* uint8(mask4);
         redPoints4 = cluster4(:,:,1)>=redColorChanel1 & cluster4(:,:,2)<=redColorChanel2 & cluster4(:,:,3)<=redColorChanel3;
         percentRed4 = 100*(sum(sum(redPoints4))/(size(cluster4,1)*size(cluster4,2)));
+
+        cd(rootPath);
+
+        folderName = strrep(currentfilename, '.png', '');
+        mkdir(folderName)
+        intoFolder = rootPath+"\"+folderName;
+
+        cd(intoFolder);
+        imwrite(cluster1,["cluster1" '.png']);
+        imwrite(cluster2,["cluster2" '.png']);
+        imwrite(cluster3,["cluster3" '.png']);
+        imwrite(cluster4,["cluster4" '.png']);
 
 
     end

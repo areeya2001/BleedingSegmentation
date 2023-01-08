@@ -60,10 +60,12 @@ if createFolder == "Y"
         intoFolder = rootPath+"\"+folderName;
 
         cd(intoFolder);
-        imwrite(cluster1,["cluster1" '.png']);
-        imwrite(cluster2,["cluster2" '.png']);
-        imwrite(cluster3,["cluster3" '.png']);
-        imwrite(cluster4,["cluster4" '.png']);
+        imwrite(cluster1,["cluster1.png"]);
+        imwrite(cluster2,["cluster2.png"]);
+        imwrite(cluster3,["cluster3.png"]);
+        imwrite(cluster4,["cluster4.png"]);
+
+        cd("../")
 
 
     end

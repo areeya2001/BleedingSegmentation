@@ -1,0 +1,19 @@
+
+rootPath = 'C:\Users\areey\ปี 4\bleeding_cluster_1\';
+cd(rootPath)
+
+imagefiles = dir('C:\Users\areey\ปี 4\bleeding_cluster_1\Test_accuracy\color/*.png');
+countFiles = length(imagefiles); 
+
+mkdir ;
+
+cd BW
+for i = 1:countFiles
+ currentfilename = imagefiles(i).name;
+ img = imread(currentfilename);
+ BW = im2bw(img,0.0001);
+ disp(currentfilename)
+ clusterName =  strrep(currentfilename, '.png', '');
+ clusterNameStr = sprintf('%s',clusterName);
+ imwrite(BW,[clusterNameStr '.png']);
+end

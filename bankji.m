@@ -4,7 +4,7 @@ imagefiles = dir('.\imagedata\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
-rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_1";
+rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_2";
 rootPathClusterExist = dir(rootPath);
 
 % Read all file
@@ -13,6 +13,10 @@ createFolder = input(prompt,"s");
 
 prompt2 = "Do you want use image red_zone ? Y/N: ";
 useRedZone = input(prompt2,"s");
+
+% wantCreateFile = "Create cluster file or show image S:(Show) F:(File)";
+% useRedZone = input(prompt2,"s");
+
 if createFolder == "Y"
       for imageData = 1:countFiles
             currentfilename = imagefiles(imageData).name;
@@ -79,14 +83,15 @@ disp('Ready..')
         for redPixelCluster = 1:4
             imgInFolder = readimage(clusterInFolder,redPixelCluster);
             % find Red pixel each cluster
-            redPoints = imgInFolder(:,:,1)>=130 & imgInFolder(:,:,2)<=60 & imgInFolder(:,:,3)<=100;
+            redPoints = imgInFolder(:,:,1)>=85 & imgInFolder(:,:,2)<=55 & imgInFolder(:,:,3)<=255;
             percentRed = 100*(sum(sum(redPoints))/(size(imgInFolder,1)*size(imgInFolder,2)));
 
-            if(percentRed >= 0.28)
+            if(percentRed >= 0.50)
                   if ~exist('./assumeBleeding', 'dir')
                        mkdir assumeBleeding
                   end
-                  copyfile(sprintf('cluster%d.png',redPixelCluster),'./assumeBleeding/')
+             copyfile(sprintf('cluster%d.png',redPixelCluster),'./assumeBleeding/')
+            %figure,imshow(imgInFolder)
             end
             fprintf('Image has %d red pixels\n',sum(sum(redPoints)))
             fprintf('Image is %.2f percent red\n',percentRed)

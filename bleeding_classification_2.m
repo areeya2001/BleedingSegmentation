@@ -6,9 +6,8 @@ redColorChanel1 = 88;
 redColorChanel2 = 55;
 redColorChanel3 = 255;
 
-
 % ไฟล์รูปภาพต้นฉบับ
-imagefiles = dir('.\imagedata\*.png');
+imagefiles = dir('C:\Users\areey\ปี 4\data\bleeding\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
@@ -28,7 +27,7 @@ if createFolder == "Y"
         currentfilename = imagefiles(imageData).name;
         img = imread(currentfilename);
         lab_img = rgb2lab(img);
-        ab = lab_img(:,:,1:3);
+        ab = lab_img(:,:,2:3);
         img2Sigle = im2single(ab);
         pixel_labels = imsegkmeans(img2Sigle,kmeanNum,'NumAttempts',4); 
 

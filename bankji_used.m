@@ -1,19 +1,19 @@
 kmeanNum = 4;
 % ไฟล์รูปภาพต้นฉบับ
-imagefiles = dir('.\imagedata\*.png');
+imagefiles = dir('C:\Users\areey\ปี 4\data\bleeding\*.png');
 countFiles = length(imagefiles); 
 
 % สำหรับเปลี่ยนที่เก็บรูป cluster
-rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_1";
+rootPath =  "C:\Users\areey\ปี 4\bleeding_cluster_2";
 rootPathClusterExist = dir(rootPath);
 
 cd(rootPath)
 
-cd results
+cd results;
 % Read all file
 % prompt = "Do you want create folder? Y/N [Y]: ";
 % createFolder = input(prompt,"s");
-percentageAccept = 0.50;
+percentageAccept = 0.35;
 for imageData = 1:48
 
             is_cluster_bleeding_idx = [];

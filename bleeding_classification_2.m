@@ -50,7 +50,7 @@ if createFolder == "Y"
         
         mask4 = pixel_labels==4;
         cluster4 = img .* uint8(mask4);
-        redPoints4 = cluster4(:,:,1)>=redColorChanel1 & cluster4(:,:,2)<=redColorChanel2 & cluster4(:,:,3)<=2redColorChanel2;
+        redPoints4 = cluster4(:,:,1)>=redColorChanel1 & cluster4(:,:,2)<=redColorChanel2 & cluster4(:,:,3)<=redColorChanel3;
         percentRed4 = 100*(sum(sum(redPoints4))/(size(cluster4,1)*size(cluster4,2)));
 
 
